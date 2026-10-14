@@ -1,0 +1,83 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1791480455985,
+      "tag": "0000_modern_valeria_richards",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1791480866962,
+      "tag": "0001_slim_kingpin",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1791483360647,
+      "tag": "0002_hard_mandrill",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1791484508973,
+      "tag": "0003_slow_alex_wilder",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1791485304542,
+      "tag": "0004_round_gertrude_yorkes",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1791491284306,
+      "tag": "0005_silent_firestar",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1791495791320,
+      "tag": "0006_clever_firebrand",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1791499076286,
+      "tag": "0007_brief_sway",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1791499805998,
+      "tag": "0008_lovely_kinsey_walden",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1791499962701,
+      "tag": "0009_good_the_order",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1791513191784,
+      "tag": "0010_dusty_xorn",
+      "breakpoints": true
+    }
+  ]
+}

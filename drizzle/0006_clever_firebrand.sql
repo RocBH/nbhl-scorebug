@@ -1,0 +1,1 @@
+ALTER TABLE `scorebug_settings` ADD `auto_advance` integer DEFAULT false NOT NULL;

@@ -1,0 +1,1 @@
+ALTER TABLE `scorebug_settings` ADD `show_clock` integer DEFAULT true NOT NULL;
