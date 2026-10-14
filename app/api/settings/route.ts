@@ -56,7 +56,7 @@ export async function POST(request: Request) {
 
   try {
     const payload = (await request.json()) as {
-      action?: "loadQueue" | "next" | "select" | "updateClock" | "setManualClock" | "clockStart" | "clockPause" | "clockReset" | "clockSet" | "clockAdjust" | "setAutoAdvance";
+      action?: "loadQueue" | "appendQueue" | "next" | "select" | "updateClock" | "setManualClock" | "clockStart" | "clockPause" | "clockReset" | "clockSet" | "clockAdjust" | "setAutoAdvance";
       seconds?: number;
       delta?: number;
       games?: string[];
@@ -80,6 +80,19 @@ export async function POST(request: Request) {
       queueIndex: current?.queueIndex || 0,
       updatedAt: now,
     };
+
+    if (payload.action === "appendQueue") {
+      const parsed = (payload.games || []).map(gameIdFrom);
+      if (!parsed.length || parsed.some(id => !id)) return Response.json({ error: "Select at least one valid game." }, { status: 400 });
+      const previous = readQueue(current?.gameQueue);
+      const queue = [...new Set([...previous, ...parsed as string[]])];
+      if (queue.length > 250) return Response.json({ error: "The queue can hold up to 250 games. Add fewer games." }, { status: 400 });
+      const added = queue.length - previous.length;
+      const firstGame = previous.length === 0;
+      const fields = { gameQueue: JSON.stringify(queue), updatedAt: now, ...(firstGame ? { gameId: queue[0], queueIndex: 0, activeStartedAt: now.getTime(), autoAdvanceEndsAt: null } : {}) };
+      await db.insert(scorebugSettings).values({ ...baseSettings, ...fields }).onConflictDoUpdate({ target: scorebugSettings.id, set: fields });
+      return Response.json({ added, gameQueue: queue, gameId: firstGame ? queue[0] : current?.gameId, queueIndex: firstGame ? 0 : current?.queueIndex });
+    }
 
     if (payload.action === "loadQueue") {
       const parsed = (payload.games || []).map(gameIdFrom).filter((id): id is string => Boolean(id));

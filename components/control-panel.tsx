@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { ScorebugFace, type Game } from "@/components/scorebug";
+import GameFinder from "@/components/game-finder";
 import SponsorControls from "@/components/sponsor-controls";
 import TeamAddons from "@/components/team-addons";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -253,6 +254,7 @@ export default function ControlPanel({ displayName, isAdmin = false }: { display
         <Tabs defaultValue="live" className="control-tabs">
           <TabsList className="control-tab-list" aria-label="Control room sections">
             <TabsTrigger value="live">Live controls</TabsTrigger>
+            <TabsTrigger value="find">Find games</TabsTrigger>
             <TabsTrigger value="setup">Setup</TabsTrigger>
           </TabsList>
           <TabsContent value="live">
@@ -417,6 +419,7 @@ export default function ControlPanel({ displayName, isAdmin = false }: { display
         )}
 
           </TabsContent>
+          <TabsContent value="find"><GameFinder queue={queue} onAdded={() => loadControls(true, true)} /></TabsContent>
           <TabsContent value="setup">
             <form onSubmit={loadQueue}>
               <label htmlFor="games">Game URLs or numbers — one per line</label>
