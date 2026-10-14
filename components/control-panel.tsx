@@ -21,6 +21,14 @@ type QueueSettings = {
   manualClockEndsAt: number | null;
 };
 
+function previewStartTime(value: string) {
+  const match = value.match(/^(\d{1,2}):([0-5]\d)/);
+  if (!match) return value || "Time unavailable";
+  const hour = Number(match[1]);
+  if (hour > 23) return value;
+  return `${hour % 12 || 12}:${match[2]} ${hour >= 12 ? "PM" : "AM"}`;
+}
+
 function formatElapsed(seconds: number) { return `${Math.floor(seconds / 3600).toString().padStart(2,"0")}:${Math.floor(seconds % 3600 / 60).toString().padStart(2,"0")}:${(seconds % 60).toString().padStart(2,"0")}`; }
 
 type ActionResponse = Partial<QueueSettings> & { gameId?: string; error?: string };
@@ -378,6 +386,7 @@ export default function ControlPanel({ displayName, isAdmin = false }: { display
                         <span className="queue-game-name">
                           <strong>{preview ? `${preview.visitor.name} vs. ${preview.home.name}` : `Game ${id}`}</strong>
                           <small>Game {id}</small>
+                          {preview && <small className="queue-game-schedule">{previewStartTime(preview.startTime)} · {preview.rinkName || "Rink unavailable"}</small>}
                         </span>
                         <em>{onAir ? "On air" : "Put on air"}</em>
                       </span>

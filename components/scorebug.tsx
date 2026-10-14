@@ -14,6 +14,7 @@ export type Game = {
   overrides?: { visitorScore: number | null; homeScore: number | null; period: number | null };
   clock: string;
   startTime: string;
+  rinkName?: string;
   scheduledStart?: string;
   showClock: boolean;
   manualClockEnabled?: boolean;

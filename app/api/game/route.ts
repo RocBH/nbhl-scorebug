@@ -12,6 +12,8 @@ type RawTeam = { id: number; name?: string; fullName?: string; abbreviation?: st
 type RawGame = {
   id: number;
   startTime?: string;
+  sportCenterName?: string;
+  sportCenterAbr?: string;
   date?: string;
   time?: string;
   periodId?: number;
@@ -51,6 +53,7 @@ function normalizeGame(game: RawGame) {
     status,
     showClock: true,
     startTime: game.startTime || "",
+    rinkName: game.sportCenterName || game.sportCenterAbr || "",
     scheduledStart: game.date && game.startTime ? `${game.date.slice(0, 10)}T${game.startTime}` : "",
     period: game.periodId || 0,
     clock: cleanClock(game.time),

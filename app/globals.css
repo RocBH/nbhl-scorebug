@@ -225,3 +225,5 @@ body { color: white; font-family: "Arial Narrow", "Roboto Condensed", Arial, Hel
 .manual-clock-edit input { min-width: 0; width: 140px; flex: 1; padding: 12px; border: 1px solid #555; background: #111; color: white; font: 700 20px/1.2 monospace; }
 .clock-second-buttons { display: flex; justify-content: center; gap: 8px; margin: 12px 0 18px; }
 .clock-second-buttons button { padding: 9px 16px; min-height: 40px; font-size: 14px; }
+
+.queue-game-name .queue-game-schedule { color: #ccc; font-size: 14px; line-height: 1.4; white-space: normal; overflow-wrap: anywhere; }
